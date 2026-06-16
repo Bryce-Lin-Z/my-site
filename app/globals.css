@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf8f5;
+  --foreground: #1c1917;
+  --card-bg: rgba(255, 255, 255, 0.72);
+  --card-border: rgba(255, 255, 255, 0.9);
+  --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
+  --nav-bg: rgba(250, 248, 245, 0.75);
+}
+
+.dark {
+  --background: #0c0a16;
+  --foreground: #ede9fe;
+  --card-bg: rgba(18, 14, 35, 0.7);
+  --card-border: rgba(255, 255, 255, 0.07);
+  --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.4);
+  --nav-bg: rgba(12, 10, 22, 0.75);
 }
 
 @theme inline {
@@ -12,15 +27,103 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ── Background blobs ── */
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(28px, -22px) scale(1.06); }
+  66%       { transform: translate(-18px, 14px) scale(0.94); }
+}
+
+.blob {
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.blob-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(167, 139, 250, 0.30), transparent 70%);
+  top: -160px; left: -160px;
+  animation: blob-drift 16s ease-in-out infinite;
+}
+.blob-2 {
+  width: 520px; height: 520px;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.22), transparent 70%);
+  top: 35%; right: -180px;
+  animation: blob-drift 21s ease-in-out infinite reverse;
+}
+.blob-3 {
+  width: 440px; height: 440px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent 70%);
+  bottom: 8%; left: 15%;
+  animation: blob-drift 26s ease-in-out infinite 4s;
+}
+.blob-4 {
+  width: 360px; height: 360px;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.14), transparent 70%);
+  bottom: 30%; right: 10%;
+  animation: blob-drift 19s ease-in-out infinite 8s reverse;
+}
+
+/* ── Glass card ── */
+.glass {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ── Gradient text ── */
+.grad-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #db2777 50%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dark .grad-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #f472b6 50%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Gradient button ── */
+.btn-grad {
+  background: linear-gradient(135deg, #7c3aed, #db2777);
+  color: #fff;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
+}
+.btn-grad:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(124, 58, 237, 0.45);
+}
+
+/* ── Blog prose ── */
+.prose h1, .prose h2, .prose h3 { font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.prose h1 { font-size: 1.875rem; }
+.prose h2 { font-size: 1.5rem; }
+.prose h3 { font-size: 1.25rem; }
+.prose p  { margin-bottom: 1rem; line-height: 1.8; }
+.prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+.prose li { margin-bottom: 0.25rem; }
+.prose code { background: #f3f4f6; padding: 0.1rem 0.35rem; border-radius: 0.3rem; font-size: 0.875rem; }
+.dark .prose code { background: #1e1b35; }
+.prose pre { background: #1e1b35; color: #e9d5ff; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; margin-bottom: 1rem; }
+.prose pre code { background: transparent; padding: 0; }
+.prose blockquote { border-left: 4px solid #ddd6fe; padding-left: 1rem; color: #78716c; margin-bottom: 1rem; font-style: italic; }
+.dark .prose blockquote { border-color: #4c1d95; color: #a8a29e; }
+.prose a { color: #7c3aed; text-decoration: underline; }
+.dark .prose a { color: #a78bfa; }
+.prose strong { font-weight: 700; }
+.prose hr { border-color: #e7e5e4; margin: 2rem 0; }
+.dark .prose hr { border-color: #2d2551; }

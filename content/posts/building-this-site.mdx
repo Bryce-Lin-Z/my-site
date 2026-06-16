@@ -1,0 +1,28 @@
+---
+title: "How I Built This Site"
+date: "2026-06-15"
+excerpt: "A quick walkthrough of the tech stack behind this portfolio and blog."
+tags: ["nextjs", "web", "tech"]
+---
+
+This site is built with **Next.js 15** using the App Router, styled with **Tailwind CSS**, and the blog is powered by local **MDX** files — no database, no CMS.
+
+## Tech choices
+
+### Next.js App Router
+
+The App Router makes it easy to mix server and client components. Blog posts are rendered entirely on the server for fast load times and good SEO.
+
+### MDX for blog content
+
+Each post is a `.mdx` file in the `content/posts/` directory. Frontmatter (title, date, tags) is parsed with `gray-matter` and the content is rendered with `next-mdx-remote`.
+
+### Tailwind CSS
+
+Tailwind v4 ships with a CSS-first config, which keeps things clean.
+
+## Deployment
+
+The site is hosted on **Vercel** — push to main and it's live in ~30 seconds. The custom domain is managed through **Cloudflare Registrar**.
+
+Simple, fast, cheap to run. Exactly what a personal site should be.
