@@ -15,13 +15,14 @@ const projects = [
     title: 'Tic Tac Toe',
     description: 'A cat vs dog Tic Tac Toe game with score tracking, built as a single HTML file.',
     tags: ['HTML', 'CSS', 'JavaScript'],
-    demo: '#',
+    demo: '/tictactoe.html',
   },
   {
-    title: 'Project Three',
-    description: 'A short description of another project you have worked on. Replace this with your real project.',
-    tags: ['React', 'Node.js', 'PostgreSQL'],
-    github: 'https://github.com',
+    title: 'LeetCode Tracker',
+    description: 'A spaced repetition app for interview prep. Review questions at the right time, search LeetCode\'s full library, and get AI hints via Gemini — all stored locally in your browser.',
+    tags: ['Next.js', 'TypeScript', 'Gemini AI', 'localStorage'],
+    github: 'https://github.com/Bryce-Lin-Z/my-site',
+    demo: '/leetcode',
   },
 ]
 

@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import CursorEffects from '@/components/CursorEffects'
+import StarField from '@/components/StarField'
 import './globals.css'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
@@ -22,13 +24,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`} suppressHydrationWarning>
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        {/* Ambient background blobs */}
-        <div aria-hidden="true" className="-z-10">
-          <div className="blob blob-1" />
-          <div className="blob blob-2" />
-          <div className="blob blob-3" />
-          <div className="blob blob-4" />
-        </div>
+        {/* Cursor spotlight */}
+        <div id="cursor-spotlight" aria-hidden="true" className="cursor-spotlight" />
+
+        {/* Dot grid */}
+        <div aria-hidden="true" className="dot-grid" />
+
+
+        <StarField />
+        <CursorEffects />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

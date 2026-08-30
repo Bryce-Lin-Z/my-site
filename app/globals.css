@@ -3,8 +3,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #faf8f5;
-  --foreground: #1c1917;
+  --background: #0d0d1a;
+  --foreground: #ede9fe;
   --card-bg: rgba(255, 255, 255, 0.72);
   --card-border: rgba(255, 255, 255, 0.9);
   --card-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
@@ -32,6 +32,37 @@ body {
   color: var(--foreground);
 }
 
+
+/* ── Dot grid background ── */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(124, 58, 237, 0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: -1;
+}
+.dark .dot-grid {
+  background-image: radial-gradient(circle, rgba(139, 92, 246, 0.18) 1px, transparent 1px);
+}
+
+/* ── Cursor spotlight ── */
+.cursor-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 160px;
+  height: 160px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.07) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform;
+}
+.dark .cursor-spotlight {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.13) 0%, transparent 65%);
+}
+
 /* ── Background blobs ── */
 @keyframes blob-drift {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -42,42 +73,71 @@ body {
 .blob {
   position: fixed;
   border-radius: 9999px;
-  filter: blur(80px);
+  filter: blur(60px);
   pointer-events: none;
+  z-index: -1;
 }
 
 .blob-1 {
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.30), transparent 70%);
-  top: -160px; left: -160px;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.65), transparent 70%);
+  top: -250px; left: -250px;
   animation: blob-drift 16s ease-in-out infinite;
 }
 .blob-2 {
-  width: 520px; height: 520px;
-  background: radial-gradient(circle, rgba(244, 114, 182, 0.22), transparent 70%);
-  top: 35%; right: -180px;
+  width: 650px; height: 650px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.55), transparent 70%);
+  top: 30%; right: -220px;
   animation: blob-drift 21s ease-in-out infinite reverse;
 }
 .blob-3 {
-  width: 440px; height: 440px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent 70%);
-  bottom: 8%; left: 15%;
+  width: 560px; height: 560px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.50), transparent 70%);
+  bottom: 5%; left: 10%;
   animation: blob-drift 26s ease-in-out infinite 4s;
 }
 .blob-4 {
-  width: 360px; height: 360px;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.14), transparent 70%);
-  bottom: 30%; right: 10%;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(217, 70, 239, 0.48), transparent 70%);
+  bottom: 25%; right: 5%;
   animation: blob-drift 19s ease-in-out infinite 8s reverse;
+}
+.blob-5 {
+  width: 380px; height: 380px;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.50), transparent 70%);
+  top: 50%; left: 40%;
+  animation: blob-drift 23s ease-in-out infinite 2s;
 }
 
 /* ── Glass card ── */
 .glass {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   box-shadow: var(--card-shadow);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+.glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle 200px at var(--mouse-x) var(--mouse-y),
+    rgba(124, 58, 237, 0.13),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.glass:hover::before {
+  opacity: 1;
 }
 
 /* ── Gradient text ── */
