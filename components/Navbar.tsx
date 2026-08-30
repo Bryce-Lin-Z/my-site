@@ -10,6 +10,7 @@ const links = [
   { href: '/projects', label: 'Projects' },
   { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
+  { href: '/leetcode', label: '🧠 LC' },
 ]
 
 export default function Navbar() {
@@ -28,7 +29,7 @@ export default function Navbar() {
               key={href}
               href={href}
               className={`rounded-full px-3.5 py-1.5 text-sm font-medium transition-all ${
-                pathname === href
+                pathname === href || (href === '/leetcode' && pathname.startsWith('/leetcode'))
                   ? 'bg-violet-100 text-violet-700 dark:bg-violet-950/80 dark:text-violet-300 shadow-sm'
                   : 'text-stone-500 hover:text-stone-900 dark:text-stone-400 dark:hover:text-stone-100'
               }`}

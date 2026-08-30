@@ -10,6 +10,12 @@ const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin']
 export const metadata: Metadata = {
   title: { default: 'Zelinjin', template: '%s | Zelinjin' },
   description: 'Personal portfolio and blog by Zelinjin.',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'LC Tracker',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
