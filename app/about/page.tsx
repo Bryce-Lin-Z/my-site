@@ -22,7 +22,12 @@ export default function About() {
             This site is where I share my projects and writing. I write to think more clearly and to connect with people who care about similar things.
           </p>
           <div className="pt-2">
-            <a href="mailto:zj199807@gmail.com" className="btn-grad inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold">
+            <a
+              href="https://www.linkedin.com/in/zelin-jin/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-grad inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold"
+            >
               Get in touch
             </a>
           </div>
