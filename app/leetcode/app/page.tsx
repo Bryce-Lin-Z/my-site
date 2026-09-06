@@ -14,7 +14,7 @@ export default function LeetcodeDashboard() {
   const [progress, setProgress] = useState<Record<number, UserProgress>>({})
 
   useEffect(() => {
-    setProgress(getAllProgress())
+    getAllProgress().then(setProgress)
   }, [])
 
   const solved = Object.values(progress).filter(p => p.status === 'reviewing' || p.status === 'solved')

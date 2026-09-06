@@ -9,11 +9,11 @@ export default function SettingsPage() {
   const [show, setShow] = useState(false)
 
   useEffect(() => {
-    setKey(getSettings().geminiApiKey)
+    getSettings().then(s => setKey(s.geminiApiKey))
   }, [])
 
-  const handleSave = () => {
-    saveSettings({ geminiApiKey: key.trim() })
+  const handleSave = async () => {
+    await saveSettings({ geminiApiKey: key.trim() })
     setSaved(true)
     setTimeout(() => setSaved(false), 2000)
   }

@@ -16,6 +16,13 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname()
 
+  // The Tauri desktop build only ships the leetcode subtree (see scripts/build-tauri.mjs) —
+  // links to the rest of the site would 404 there. This must be a build-time check (not a
+  // runtime isTauri() check): the static export bakes this component's HTML in at build
+  // time regardless, so only a build-time flag guarantees the nav is never in the exported
+  // HTML at all, rather than relying on client hydration to remove it after the fact.
+  if (process.env.NEXT_PUBLIC_TAURI_BUILD === '1') return null
+
   return (
     <header className="sticky top-0 z-50 border-b border-white/30 dark:border-white/8" style={{ background: 'var(--nav-bg)', backdropFilter: 'blur(18px)', WebkitBackdropFilter: 'blur(18px)' }}>
       <nav className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">

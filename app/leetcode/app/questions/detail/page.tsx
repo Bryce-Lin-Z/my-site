@@ -1,7 +1,7 @@
 'use client'
 
-import { use, useEffect, useState, useRef } from 'react'
-import { useRouter } from 'next/navigation'
+import { Suspense, useEffect, useState, useRef } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { getProgress, markSolved, recordReview, updateNotes, getSettings } from '@/lib/lc-storage'
 import { isDueToday, daysUntilReview } from '@/lib/lc-srs'
 import { askGemini } from '@/lib/lc-gemini'
@@ -24,10 +24,11 @@ interface Message {
 
 const QUICK_PROMPTS = ['Give me a hint', 'Explain the approach', 'What data structure should I use?', 'Quiz me on this']
 
-export default function QuestionDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params)
+function QuestionDetailContent() {
+  const searchParams = useSearchParams()
+  const id = searchParams.get('id')
   const router = useRouter()
-  const question = allQuestions.find(q => q.id === parseInt(id))
+  const question = allQuestions.find(q => q.id === parseInt(id ?? ''))
 
   const [progress, setProgress] = useState<UserProgress | null>(null)
   const [notes, setNotes] = useState('')
@@ -43,10 +44,12 @@ export default function QuestionDetailPage({ params }: { params: Promise<{ id: s
 
   useEffect(() => {
     if (!question) return
-    const p = getProgress(question.id)
-    setProgress(p)
-    setNotes(p?.notes ?? '')
-    setApiKey(getSettings().geminiApiKey)
+    ;(async () => {
+      const p = await getProgress(question.id)
+      setProgress(p)
+      setNotes(p?.notes ?? '')
+      setApiKey((await getSettings()).geminiApiKey)
+    })()
   }, [question])
 
   useEffect(() => {
@@ -56,28 +59,28 @@ export default function QuestionDetailPage({ params }: { params: Promise<{ id: s
   const handleNotesChange = (val: string) => {
     setNotes(val)
     if (notesTimer.current) clearTimeout(notesTimer.current)
-    notesTimer.current = setTimeout(() => {
+    notesTimer.current = setTimeout(async () => {
       if (question) {
-        updateNotes(question.id, val)
+        await updateNotes(question.id, val)
         setNoteSaved(true)
         setTimeout(() => setNoteSaved(false), 1500)
       }
     }, 800)
   }
 
-  const handleMarkSolved = () => {
-    const p = getProgress(question!.id)
+  const handleMarkSolved = async () => {
+    const p = await getProgress(question!.id)
     setIsFirstSolve(!p || p.status === 'not_started')
     setShowPopup(true)
   }
 
-  const handleReviewSave = (interval: number, rating: ReviewRating) => {
+  const handleReviewSave = async (interval: number, rating: ReviewRating) => {
     if (!question) return
     let updated: UserProgress
     if (isFirstSolve) {
-      updated = markSolved(question.id, interval)
+      updated = await markSolved(question.id, interval)
     } else {
-      updated = recordReview(question.id, rating, interval)
+      updated = await recordReview(question.id, rating, interval)
     }
     setProgress(updated)
     setShowPopup(false)
@@ -287,5 +290,13 @@ export default function QuestionDetailPage({ params }: { params: Promise<{ id: s
         />
       )}
     </div>
+  )
+}
+
+export default function QuestionDetailPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-stone-400">Loading...</div>}>
+      <QuestionDetailContent />
+    </Suspense>
   )
 }

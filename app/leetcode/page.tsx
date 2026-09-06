@@ -61,6 +61,15 @@ export default function LeetcodeLanding() {
           <Link href="/leetcode/app" className="btn-grad rounded-full px-7 py-3 text-sm font-semibold">
             Launch App →
           </Link>
+          {process.env.NEXT_PUBLIC_TAURI_BUILD !== '1' && (
+            <a
+              href="/downloads/leetcode-tracker-mac.dmg"
+              download
+              className="glass rounded-full px-7 py-3 text-sm font-semibold text-stone-700 dark:text-stone-300 hover:-translate-y-0.5 transition-all"
+            >
+              ⬇ Download for Mac
+            </a>
+          )}
           <a
             href="https://github.com/Bryce-Lin-Z/my-site"
             target="_blank"

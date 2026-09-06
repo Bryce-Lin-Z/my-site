@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo, useRef, useCallback } from 'react'
 import { getAllProgress } from '@/lib/lc-storage'
 import { getCustomQuestions, addCustomQuestion } from '@/lib/lc-custom'
+import { searchLeetCodeQuestions } from '@/lib/lc-search-client'
 import type { LCQuestion, UserProgress, Difficulty, QuestionStatus } from '@/lib/lc-types'
 import QuestionCard from '@/components/lc/QuestionCard'
 import builtinQuestions from '@/data/lc-questions.json'
@@ -36,8 +37,8 @@ export default function QuestionsPage() {
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    setProgress(getAllProgress())
-    setCustomQuestions(getCustomQuestions())
+    getAllProgress().then(setProgress)
+    getCustomQuestions().then(setCustomQuestions)
   }, [])
 
   const allQuestions = useMemo(
@@ -73,9 +74,7 @@ export default function QuestionsPage() {
       setLcLoading(true)
       setLcError('')
       try {
-        const res = await fetch(`/api/lc-search?q=${encodeURIComponent(q)}`)
-        if (!res.ok) throw new Error('Search failed')
-        setLcResults(await res.json())
+        setLcResults(await searchLeetCodeQuestions(q))
       } catch {
         setLcError('Search failed. Try again.')
       } finally {
@@ -89,9 +88,9 @@ export default function QuestionsPage() {
     searchLeetCode(val)
   }
 
-  const handleAdd = (q: LCQuestion) => {
-    addCustomQuestion(q)
-    setCustomQuestions(getCustomQuestions())
+  const handleAdd = async (q: LCQuestion) => {
+    await addCustomQuestion(q)
+    setCustomQuestions(await getCustomQuestions())
   }
 
   const alreadyTracked = (id: number) => allQuestions.some(q => q.id === id)

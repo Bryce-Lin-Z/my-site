@@ -22,7 +22,7 @@ export default function QuestionCard({ question, progress }: Props) {
 
   return (
     <Link
-      href={`/leetcode/questions/${question.id}`}
+      href={`/leetcode/app/questions/detail?id=${question.id}`}
       className="glass flex items-center gap-3 rounded-2xl px-4 py-3.5 transition-all hover:-translate-y-0.5 active:scale-98"
     >
       <div className="flex-shrink-0 w-8 text-center">
