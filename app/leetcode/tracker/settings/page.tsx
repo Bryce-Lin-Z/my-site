@@ -53,7 +53,7 @@ export default function SettingsPage() {
         <button
           onClick={handleSave}
           className={`w-full rounded-xl py-2.5 text-sm font-semibold transition-all ${
-            saved ? 'bg-green-500 text-white' : 'btn-grad'
+            saved ? 'bg-green-500 text-white' : 'btn-outline'
           }`}
         >
           {saved ? '✓ Saved!' : 'Save Key'}

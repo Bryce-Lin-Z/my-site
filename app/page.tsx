@@ -19,7 +19,7 @@ export default function Home() {
           I build things for the web and write about what I learn along the way.
         </p>
         <div className="flex flex-wrap gap-4">
-          <Link href="/projects" className="btn-grad rounded-full px-6 py-2.5 text-sm font-semibold">
+          <Link href="/projects" className="btn-outline rounded-xl px-6 py-2.5 text-sm font-semibold">
             See my work
           </Link>
           <Link href="/about" className="glass rounded-full px-6 py-2.5 text-sm font-semibold text-stone-700 transition-all hover:-translate-y-0.5 dark:text-stone-300">

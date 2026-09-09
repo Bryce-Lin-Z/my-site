@@ -25,7 +25,7 @@ try {
 // The desktop app is scoped to the leetcode feature only — drop the rest of
 // the site's routes from the exported output (out/_next has the shared JS/CSS
 // chunks every route depends on, so it stays).
-for (const dir of ['out/about', 'out/blog', 'out/contact', 'out/projects', 'out/404', 'out/_not-found', 'out/downloads']) {
+for (const dir of ['out/about', 'out/blog', 'out/projects', 'out/404', 'out/_not-found', 'out/downloads']) {
   rmSync(dir, { recursive: true, force: true })
 }
 for (const file of ['out/index.html', 'out/index.txt', 'out/404.html']) {

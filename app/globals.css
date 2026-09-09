@@ -167,6 +167,22 @@ body {
   box-shadow: 0 6px 24px rgba(124, 58, 237, 0.45);
 }
 
+/* ── Outline button (CTAs) ──
+   The page canvas (--background) is dark navy in both theme states — the
+   light/dark toggle only re-tints the glass cards, not the page itself — so
+   this stays one light-lavender treatment rather than flipping per theme. */
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid rgba(167, 139, 250, 0.45);
+  color: #ddd6fe;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+.btn-outline:hover {
+  border-color: rgba(167, 139, 250, 0.85);
+  background: rgba(139, 92, 246, 0.08);
+  transform: translateY(-1px);
+}
+
 /* ── Blog prose ── */
 .prose h1, .prose h2, .prose h3 { font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.5rem; }
 .prose h1 { font-size: 1.875rem; }

@@ -110,7 +110,7 @@ function QuestionDetailContent() {
     return (
       <div className="flex flex-col items-center justify-center h-64 gap-4">
         <p className="text-stone-500">Question not found.</p>
-        <button onClick={() => router.back()} className="btn-grad rounded-full px-5 py-2 text-sm font-semibold">Go back</button>
+        <button onClick={() => router.back()} className="btn-outline rounded-xl px-5 py-2 text-sm font-semibold">Go back</button>
       </div>
     )
   }
@@ -148,6 +148,7 @@ function QuestionDetailContent() {
 
       {/* Status & actions */}
       <div className="glass rounded-2xl p-4 space-y-3">
+        <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">🔁 Recap Schedule</p>
         <div className="flex items-center justify-between">
           <div>
             {!progress || progress.status === 'not_started' ? (
@@ -176,9 +177,9 @@ function QuestionDetailContent() {
           </a>
           <button
             onClick={handleMarkSolved}
-            className="flex-1 btn-grad rounded-xl py-2.5 text-sm font-semibold"
+            className="flex-1 btn-outline rounded-xl py-2.5 text-sm font-semibold"
           >
-            {!progress || progress.status === 'not_started' ? 'Mark Solved' : 'Record Review'}
+            {!progress || progress.status === 'not_started' ? 'Mark Solved' : 'Update Recap'}
           </button>
         </div>
 
@@ -206,9 +207,10 @@ function QuestionDetailContent() {
       {/* Notes */}
       <div className="glass rounded-2xl p-4 space-y-2">
         <div className="flex items-center justify-between">
-          <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">My Notes</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500">📝 My Notes</p>
           {noteSaved && <span className="text-xs text-green-500">Saved ✓</span>}
         </div>
+        <p className="text-xs text-stone-400 dark:text-stone-500 -mt-1">Auto-saves as you type.</p>
         <textarea
           value={notes}
           onChange={e => handleNotesChange(e.target.value)}
@@ -274,7 +276,7 @@ function QuestionDetailContent() {
           <button
             onClick={() => sendMessage(input)}
             disabled={loading || !input.trim()}
-            className="btn-grad rounded-xl px-4 py-2 text-sm font-semibold disabled:opacity-40"
+            className="btn-outline rounded-xl px-4 py-2 text-sm font-semibold disabled:opacity-40"
           >
             Send
           </button>

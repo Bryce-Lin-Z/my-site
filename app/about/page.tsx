@@ -16,7 +16,7 @@ export default function About() {
             I&apos;m a software developer who loves building products that are simple, fast, and enjoyable to use. I care deeply about the details — both in code and in design.
           </p>
           <p>
-            When I&apos;m not coding, I&apos;m probably reading, exploring new places, or thinking about how to make something better.
+            When I&apos;m not coding, I&apos;m probably reading, exploring new places, playing badminton, or thinking about how to make something better.
           </p>
           <p>
             This site is where I share my projects and writing. I write to think more clearly and to connect with people who care about similar things.
@@ -26,7 +26,7 @@ export default function About() {
               href="https://www.linkedin.com/in/zelin-jin/"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-grad inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold"
+              className="btn-outline inline-flex items-center gap-2 rounded-xl px-6 py-2.5 text-sm font-semibold"
             >
               Get in touch
             </a>

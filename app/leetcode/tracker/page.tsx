@@ -102,7 +102,7 @@ export default function LeetcodeDashboard() {
           <p className="text-xs text-stone-500 dark:text-stone-400">
             Browse questions, mark them solved, and we&apos;ll remind you when to review.
           </p>
-          <Link href="/leetcode/app/questions" className="btn-grad inline-block rounded-full px-5 py-2 text-sm font-semibold">
+          <Link href="/leetcode/tracker/questions" className="btn-outline inline-block rounded-xl px-5 py-2 text-sm font-semibold">
             Browse Questions
           </Link>
         </div>

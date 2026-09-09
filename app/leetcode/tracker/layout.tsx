@@ -4,9 +4,10 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = { title: 'LeetCode Tracker' }
 
 const tabs = [
-  { href: '/leetcode/app', label: 'Dashboard', icon: '⚡' },
-  { href: '/leetcode/app/questions', label: 'Questions', icon: '📋' },
-  { href: '/leetcode/app/settings', label: 'Settings', icon: '⚙️' },
+  { href: '/leetcode/tracker', label: 'Dashboard', icon: '⚡' },
+  { href: '/leetcode/tracker/questions', label: 'Questions', icon: '📋' },
+  { href: '/leetcode/tracker/add', label: 'Add Questions', icon: '➕' },
+  { href: '/leetcode/tracker/settings', label: 'Settings', icon: '⚙️' },
 ]
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {

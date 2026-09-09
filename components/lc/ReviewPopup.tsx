@@ -113,7 +113,7 @@ export default function ReviewPopup({ questionTitle, isFirstSolve, onSave, onSki
           </button>
           <button
             onClick={() => onSave(finalInterval, rating)}
-            className="flex-1 btn-grad rounded-xl py-2.5 text-sm font-semibold"
+            className="flex-1 btn-outline rounded-xl py-2.5 text-sm font-semibold"
           >
             Schedule
           </button>

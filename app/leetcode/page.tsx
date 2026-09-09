@@ -58,9 +58,6 @@ export default function LeetcodeLanding() {
           A spaced repetition app for interview prep. Review the right questions at the right time, with AI hints when you&apos;re stuck.
         </p>
         <div className="flex flex-wrap gap-4 justify-center">
-          <Link href="/leetcode/app" className="btn-grad rounded-full px-7 py-3 text-sm font-semibold">
-            Launch App →
-          </Link>
           {process.env.NEXT_PUBLIC_TAURI_BUILD !== '1' && (
             <a
               href="/downloads/leetcode-tracker-mac.dmg"
@@ -70,6 +67,9 @@ export default function LeetcodeLanding() {
               ⬇ Download for Mac
             </a>
           )}
+          <Link href="/leetcode/tracker" className="btn-outline rounded-xl px-7 py-3 text-sm font-semibold">
+            Try it in browser →
+          </Link>
           <a
             href="https://github.com/Bryce-Lin-Z/my-site"
             target="_blank"
@@ -79,6 +79,11 @@ export default function LeetcodeLanding() {
             View Source
           </a>
         </div>
+        {process.env.NEXT_PUBLIC_TAURI_BUILD !== '1' && (
+          <p className="text-xs text-stone-400 dark:text-stone-500 max-w-md mx-auto">
+            ⚠️ The browser version stores progress in your browser only — clearing site data or cache will erase it. Download the Mac app to keep it safely on disk instead.
+          </p>
+        )}
       </section>
 
       {/* How it works */}
@@ -121,7 +126,7 @@ export default function LeetcodeLanding() {
           ))}
         </div>
         <p className="text-sm text-stone-500 dark:text-stone-400">
-          All progress is stored locally in your browser — no account, no server, no cost.
+          All progress is stored locally in your browser — no account, no server, no cost. (Clearing your browser data will erase it — the Mac app stores progress on disk instead.)
         </p>
       </section>
 
@@ -129,8 +134,8 @@ export default function LeetcodeLanding() {
       <section className="text-center space-y-4">
         <h2 className="text-2xl font-bold">Try it yourself</h2>
         <p className="text-stone-500 dark:text-stone-400">Your progress stays in your browser. No sign-up needed.</p>
-        <Link href="/leetcode/app" className="btn-grad inline-block rounded-full px-8 py-3 text-sm font-semibold">
-          Launch App →
+        <Link href="/leetcode/tracker" className="btn-outline inline-block rounded-xl px-8 py-3 text-sm font-semibold">
+          Try it in browser →
         </Link>
       </section>
     </div>
