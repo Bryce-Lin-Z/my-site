@@ -1,0 +1,22 @@
+---
+title: "AI Learning, Day 1: What Even Is an Agent?"
+date: "2026-09-15"
+excerpt: "Starting a formal, systematic study of AI — day 1 covers the basics of agents from Hugging Face's Agents Course."
+tags: ["ai-learning", "day-1"]
+---
+
+I've built AI agents at work, but always by piecing things together — never with a formal grasp of the underlying concepts. I want to fix that: go deep, be systematic, and actually understand what I've been building. This series tracks that daily progress.
+
+## Today
+
+Started [Hugging Face's Agents Course](https://huggingface.co/learn/agents-course/en/unit1/what-are-agents), Unit 1: **What are agents?**
+
+Core idea: an agent is a system where an **LLM controls the workflow** — deciding what actions to take, in what order, using tools it has access to — rather than following a fixed, hardcoded sequence. The general loop is:
+
+1. **Think** — reason about the current state and what to do next
+2. **Act** — call a tool (search, code execution, an API, etc.)
+3. **Observe** — take in the result and decide the next step
+
+That loop repeats until the task is done. The spectrum of "agentic-ness" ranges from a plain LLM call with no control over flow, up to a fully autonomous agent that plans, acts, and self-corrects with minimal human input.
+
+Simple framing, but a useful one — it gives me a vocabulary for things I was doing intuitively before.
