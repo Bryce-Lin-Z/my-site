@@ -1,0 +1,12 @@
+---
+title: "AI Learning, Day 2: Tokens, Revisited"
+date: "2026-09-16"
+excerpt: "Reading about how LLMs work — the token concept ties directly back to an NLP class from my master's."
+tags: ["ai-learning", "day-2"]
+---
+
+Today: [What are LLMs?](https://huggingface.co/learn/agents-course/en/unit1/what-are-llms) from the Hugging Face Agents Course.
+
+The part that stuck most was **tokens** — LLMs don't read text as words or characters, they read it as tokens, chunks of text (often sub-words) mapped to numbers via a tokenizer. Everything downstream — context length, cost, even weird model behavior on rare words — traces back to this.
+
+This actually pulled up an old memory: a tokenization module from an NLP class back in my master's, well before LLMs were the default lens for "NLP." Same core idea, different era. Nice to see the thread connect — it means I already had the vocabulary, just not the framing for how central tokens are to how modern LLMs actually operate.
