@@ -1,0 +1,12 @@
+---
+title: "AI Learning, Day 3: Agents Don't Actually Remember"
+date: "2026-09-17"
+excerpt: "Messages and special tokens — the illusion of memory is just the full conversation getting re-sent every time."
+tags: ["ai-learning", "day-3"]
+---
+
+Today: [Messages and Special Tokens](https://huggingface.co/learn/agents-course/en/unit1/messages-and-special-tokens) from the Hugging Face Agents Course.
+
+The thing that clicked for me: an agent doesn't "remember" a conversation in any stateful sense. Every turn, the whole message history (system, user, assistant messages) gets concatenated back into a single prompt — formatted with model-specific special tokens marking where each message starts and ends — and sent to the LLM fresh. The model has no memory between calls; what looks like memory is just re-feeding the growing transcript each time.
+
+Obvious in hindsight given tokens are just the model's raw input, but I'd been treating "the agent remembers X" as some internal state rather than "the conversation history happens to include X." Small reframe, but it changes how I think about context windows, cost scaling with conversation length, and why trimming/summarizing history matters for longer-running agents.
