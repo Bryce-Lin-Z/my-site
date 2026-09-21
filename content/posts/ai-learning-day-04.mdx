@@ -1,0 +1,14 @@
+---
+title: "AI Learning, Day 4: Tools Are Just Functions With a Description"
+date: "2026-09-20"
+excerpt: "How agents actually take action in the world — a tool is a function, a name, and a description the LLM can read."
+tags: ["ai-learning", "day-4"]
+---
+
+Today: [Tools](https://huggingface.co/learn/agents-course/en/unit1/tools) from the Hugging Face Agents Course.
+
+An LLM only produces text — it can't search the web, run code, or call an API on its own. A **tool** closes that gap: a regular function, given a name, a text description of what it does, and a defined input format, all injected into the system prompt so the model knows it exists and how to call it.
+
+The agent doesn't literally invoke the function itself — it just outputs text saying "call tool X with input Y." The surrounding framework parses that text, actually runs the function, and feeds the result back into the next prompt (tying right back into Day 3: no real execution happens inside the model, it's still just text in, text out).
+
+Takeaway: tool quality is mostly a documentation problem. A vague description or ambiguous input schema means the model calls it wrong just as easily as it calls it right.
