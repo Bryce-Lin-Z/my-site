@@ -1,0 +1,18 @@
+---
+title: "AI Learning, Day 5: The Thought-Action-Observation Loop"
+date: "2026-09-23"
+excerpt: "How Thought, Action, and Observation fit together into the loop that actually drives an agent."
+tags: ["ai-learning", "day-5"]
+---
+
+Today, three connected pages from the Hugging Face Agents Course:
+
+- [Understanding AI Agents through the Thought-Action-Observation Cycle](https://huggingface.co/learn/agents-course/en/unit1/agent-steps-and-structure)
+- [Thought: Internal Reasoning and the ReAct Approach](https://huggingface.co/learn/agents-course/en/unit1/thoughts)
+- [Actions, Enabling the Agent to Engage with Its Environment](https://huggingface.co/learn/agents-course/en/unit1/actions)
+
+This finally ties Days 3 and 4 together into one loop. An agent runs **Thought → Action → Observation**, repeatedly: it reasons about what to do next (Thought), calls a tool (Action), reads the result back into context (Observation), and repeats until done. **ReAct** is the prompting pattern that makes this work — interleaving reasoning with tool calls instead of doing all the thinking up front, so the agent can react to what it actually learns along the way (as opposed to Chain-of-Thought, which just reasons step by step with no environment interaction).
+
+On the Action side, the concrete mechanism is the **"stop and parse"** approach: the LLM outputs its intended action in a structured format, generation is stopped right there, and an external parser reads the structure and actually executes the tool — the model itself never runs anything. Agents built this way fall into a spectrum: **JSON agents** (simple, structured, easy to validate) vs. **Code agents** (write executable code, more expressive with loops/conditionals, but need sandboxing since they can do more damage if wrong).
+
+Put together: the loop is the architecture, ReAct is the reasoning strategy inside it, and Action format (JSON vs. code) is just an implementation choice for the "Action" step.
