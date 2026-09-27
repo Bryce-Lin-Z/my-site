@@ -1,0 +1,14 @@
+---
+title: "AI Learning, Day 6: Observations Close the Loop"
+date: "2026-09-26"
+excerpt: "The last piece of the Thought-Action-Observation cycle — how results get fed back as the agent's only form of 'memory.'"
+tags: ["ai-learning", "day-6"]
+---
+
+Today: [Observations](https://huggingface.co/learn/agents-course/en/unit1/observations) from the Hugging Face Agents Course — the piece that closes the loop from Day 5.
+
+An **observation** is how the agent perceives what its action actually did: an API response, an error or success message, a changed file or database row, a sensor reading, a completed deadline. It's the environment talking back.
+
+Mechanically, it's exactly what Day 3 already hinted at: after an action executes, the result gets **appended as structured feedback into the existing message history** — there's no separate "memory" being updated, just more text added to the same growing context that gets re-sent next turn. That appended observation is what the next Thought reasons over, which is what lets the agent adapt instead of blindly repeating the same action.
+
+So the full loop, now complete: **Thought** (reason) → **Action** (stop-and-parse, call a tool) → **Observation** (append the result to context) → back to Thought. Nothing mystical under the hood — just a prompt that keeps growing with each cycle.
