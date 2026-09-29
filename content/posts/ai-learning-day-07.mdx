@@ -1,0 +1,16 @@
+---
+title: "AI Learning, Day 7: Building the Loop by Hand"
+date: "2026-09-28"
+excerpt: "A dummy agent in Colab with no framework — and the one parameter that keeps the model from hallucinating its own tool results."
+tags: ["ai-learning", "day-7"]
+---
+
+Today: [Dummy Agent Library](https://huggingface.co/learn/agents-course/en/unit1/dummy-agent-library) — the first hands-on one. Ran it in Colab against Hugging Face's serverless `InferenceClient`, no agent framework at all, just raw chat completions.
+
+Building the loop manually made Days 3–6 concrete. You write a system prompt describing the tools and the required output format, send it, get back an action, parse it, run the function yourself, append the result, send the whole thing again.
+
+The detail that actually surprised me: **without a stop sequence, the model happily writes the `Observation:` itself** — inventing a tool result that never happened and confidently continuing from it. The fix is `stop=["Observation:"]`, which halts generation right at the boundary so *you* can execute the real tool and inject the real output before resuming.
+
+That's the "stop and parse" idea from Day 5, except now I've seen the failure mode it prevents. The model has no way to know whether a tool actually ran — it's all just text continuation, so left alone it will cheerfully autocomplete a plausible-looking result.
+
+Also fair to say the exercise is deliberately tedious. Hand-managing message lists and string parsing for a single weather call is exactly the argument for `smolagents`, which is up next.
