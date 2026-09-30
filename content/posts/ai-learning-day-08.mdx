@@ -1,0 +1,16 @@
+---
+title: "AI Learning, Day 8: First Agent, Deployed"
+date: "2026-09-29"
+excerpt: "Built and deployed my first real agent with smolagents — CodeAgent, custom tools, live on Hugging Face Spaces."
+tags: ["ai-learning", "day-8"]
+---
+
+Today: [Let's Create Our First Agent Using smolagents](https://huggingface.co/learn/agents-course/en/unit1/tutorial) — Unit 1's capstone. Deployed here: [BryceZJ/First_agent_template](https://huggingface.co/spaces/BryceZJ/First_agent_template).
+
+This is where Days 1–7 stopped being theory. `smolagents` wraps everything I built by hand on Day 7 — the manual message loop, the stop-and-parse hack, the prompt engineering — into a `CodeAgent`: an agent that reasons in the Thought → Action → Observation cycle, but instead of emitting JSON for its actions, it writes and executes actual Python. More expressive, and much less scaffolding to hand-roll.
+
+Setup was: duplicate the template Space, drop a Hugging Face API token in as a secret, and wire tools into `app.py`. The model behind it is `Qwen/Qwen2.5-Coder-32B-Instruct`, served through HF's API — same serverless pattern as Day 7, just no longer hand-managing the request/response cycle myself.
+
+The part worth remembering: adding a tool is just a decorated Python function with a docstring — directly the "tools are functions with a description" idea from Day 4, now literally the mechanism instead of a concept. I wired in the timezone tool from the template plus web search, and the agent decides on its own when to reach for either.
+
+First one is live and running. Small, but it's the first time in this course a thing I built is actually deployed and callable by anyone, not just running in a notebook.
